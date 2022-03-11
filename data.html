@@ -197,6 +197,56 @@
 
 <a href="https://hal.archives-ouvertes.fr/hal-03527679/">Cyril Gorlla, Jared Thach, Hiroki Hoshida. Development of Input Libraries With Intel XLSDK to
 	Capture Data for App Start Prediction. 2022. hal-03527679</a>
+				
+	<p>Users often face a myriad of minuscule slow-downs when
+navigating a computer. These slow-downs largely take the
+form of application loading times and we aimed to first collect
+user data by building custom data collectors in our previous work. The collected data can then be used to study user
+patterns and to extract insights via machine learning practices and models such as Hidden Markov Models (HMM) and
+Long Short-Term Memory (LSTM) Models. By leveraging
+these models, the inconvenience of accumulated application
+start-up times can be greatly reduced.
+Despite computer processor speeds increasing year after
+year, there are still high usage programs and processes that
+interrupt workflows in our daily lives. Whether that interruption be lag when opening Zoom to join a meeting, or
+waiting for Google Chrome to open a link embedded in a
+Word document, these micro (or in some cases, major) stutters can cause a process meant to be relatively smooth to
+be a large source of frustration in the daily lives of an end
+user. One key point, however, is that these processes are
+actually often “scheduled” in a sense. That is, most people
+often repeat the same or similar tasks every day, and have
+a set routine. One example could be an office worker who
+opens Microsoft Excel almost every time they turns on their
+laptop at the office. These sorts of patterns can be studied,
+and by using machine learning, we can create predetermined
+schedules for users, allowing us to preload apps, or have processes ready before the user needs them. In other words, by
+analyzing user behavior, we can load an application the user
+would likely use next in advance, reducing wait and loading
+		times.</p>
+				</p>By using Intel’s System Usage Reporting library and the
+accompanying XLSDK, we created “monitors” of user and
+computer activity, known as collectors or Input Libraries,
+and create activity logs which we can then analyze to provide
+preloading solutions for the user. In the previously linked paper, we
+have covered the development of these Input Libraries. We
+now briefly restate their descriptions.
+In order for us to create our own Input Libraries, the
+XLSDK provides a wide range of examples which can be
+used either as references or templates. Throughout the first
+ten weeks of working with Intel, we developed four different Input Libraries, each using a different template and
+measuring different categories of inputs from the user and
+computer. The first, the mouse_input Input Library, keeps a
+log of the cursor coordinates as the user moves the mouse
+around. Second, the user_waiting Input Library, keeps a
+timer based log of the cursor icon as the user uses the computer. The third, a foreground_window Input Library, creates a log entry whenever the foreground window (the window in front of all other windows) changes whether it be
+automatically (such as a notification pop up) or by user input
+(clicking the taskbar). Finally, the fourth Input Library is the desktop_mapper, which, when triggered by a change in the
+foreground window, maps all the windows on the desktop in
+z-order and stores pertinent information about each window
+e.g. position and size. Each of these Input Libraries are coded
+differently in fundamental ways, and measure changes in different ways as well. By using the data provided by Libraries
+like these, we can determine preloading schedules for the
+			individual user.</p>
 
 
 	</section>
