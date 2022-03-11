@@ -193,11 +193,39 @@
 		<div class="wrap">
 
 			<article class="post__content ">
-				<p>We had two tasks.</p>
+				<p>We addressed two predictive tasks using the data collected.
+For our first task, we built models to predict the next application used based on previous user activity. For our second task,
+we built a model to predict the duration the next application
+would be used based on previous user activity.</p>
 
 				<h2>Task 1: Next-App Prediction</h2>
 				<ul>
-					<li>Approach 2</li>
+					<li>Approach 1: Hidden Markov Model</li>
+				<p>The Hidden Markov Model (HMM) is a particular machine
+learning approach that ingests sequences of time-related
+events in order to predict future events. For our purposes,
+we manually implemented a First Order HMM (adopting a
+similar model class as the package, scikit-learn) which looks
+at a single previous application in order to predict the single
+next application. A HMM’s “order” refers to the amount of
+previous applications, or “look-back”, the HMM will use in
+order to generate a single next prediction, and therefore, our
+First Order HMM will use a single previous event to predict
+a single next event. This is equivalent to simply computing
+conditional probabilities of each unique 2 sequence event; for
+a given previous event A, the probability of the next event B
+					is determined by:</p> <img src= "https://calcworkshop.com/wp-content/uploads/formula-conditional-probability.png">
+	<p>These probabilistic values are calculated upon model training and stored into a posterior matrix instance variable.
+These probabilities are then recalled upon prediction.
+Figure 4: conditional probabilities of notepad++.exe
+Given an input foreground of notepad++.exe, for example, the probability of explorer.exe being the next foreground is approximately 43%. One
+special implementation of our First Order HMM is the custom predict function which has an optional parameter of
+n_foregrounds which specifies the number of foregrounds
+to return for a single input, based on the foregrounds with the
+highest probabilities. A predict call with n_foregrounds = 3 will return the list [‘explorer.exe’,
+‘mmc.exe’, ‘chrome.exe’]. Accuracy for a single observation is therefore calculated by determining whether or not
+the true foreground application exists within the list of predicted foreground applications. Using n_foregrounds = 3
+		for our testing dataset, we achieve a final accuracy of 70.05%.</p>
 					<li>Approach 2</li>
 				</ul>
 
