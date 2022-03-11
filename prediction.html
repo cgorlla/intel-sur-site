@@ -226,14 +226,45 @@ highest probabilities. A predict call with n_foregrounds = 3 will return the lis
 ‘mmc.exe’, ‘chrome.exe’]. Accuracy for a single observation is therefore calculated by determining whether or not
 the true foreground application exists within the list of predicted foreground applications. Using n_foregrounds = 3
 		for our testing dataset, we achieve a final accuracy of 70.05%.</p>
-					<li>Approach 2</li>
-					<img src= "/intel-sur-site/images/pred-2.png">
+					<li>Approach 2: Long Short-Term Memory</li>
+					
+<p>Though our Hidden Markov Model implementation was
+fairly successful, we wanted to approach the task from a
+different angle, so we built a Long Short-Term Memory Recurrent Neural Network (LSTM RNN) model as well. Because
+of the higher complexity of LSTMs compared to HMMs, we
+developed our model using Keras, a deep learning API built
+	on Python that allows for a streamlined pipeline of models.</p>
+					<p>Similarly to our HMM,
+our LSTM returned a list of the top four most likely applications to follow the current foreground application, ordered in
+levels of confidence. Accuracy was calculated with the same
+function (where a single observation was labeled accurate if
+the true future foreground application appeared in the list of
+predictions). Our LSTM model had a test accuracy of 68.60%,
+						a value similar to our HMM accuracy</p>
+					<img src= "/intel-sur-site/images/pred-2h.png">
 				</ul>
 
 <hr />
 
 <h2>Task 2: Foreground App Duration</h2>
+				<p>Because of the flexibility of the LSTM model, we decided
+to focus on a LSTM solution for task 2, predicting nextapplication durations, as well. Our task 1 LSTM model used
+a “look-back” value of one previous foreground application
+in order to predict one future foreground application, where
+a “look-back” is defined as the number of previous events a
+single input will use in order to generate the next output. In
+order to raise accuracy, our task 2 LSTM used a look-back
+value of five.<img src= "/intel-sur-site/images/pred-4.png"> In other words, the model uses the previous five
+data points to predict the next. The task 2 model architecture
+is similar to our task 1 model, with the four layers in the
+same order. However, we used a MAE loss function, ReLU
+activation function, and 25 epochs instead. After training,
+our model made predictions with a mean absolute error of
+0.74 minutes. With our testing dataset’s mean foreground
+duration of 1.73 minutes, on average our model predicted
+					foreground durations accurate within approximately 44 seconds.</P>
 <img src= "/intel-sur-site/images/pred-3.png">
+			
 
 	</section>
 
