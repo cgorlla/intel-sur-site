@@ -244,25 +244,27 @@ predictions). Our LSTM model had a test accuracy of 68.60%,
 					<img src= "/intel-sur-site/images/pred-2h.png">
 				</ul>
 
-<hr />
+<hr>
 
 <h2>Task 2: Foreground App Duration</h2>
-				<p>Because of the flexibility of the LSTM model, we decided
-to focus on a LSTM solution for task 2, predicting nextapplication durations, as well. Our task 1 LSTM model used
+<p>Because of the flexibility of the LSTM model, we decided to focus on a LSTM solution for task 2, predicting next application durations, as well. Our task 1 LSTM model used
 a “look-back” value of one previous foreground application
 in order to predict one future foreground application, where
 a “look-back” is defined as the number of previous events a
 single input will use in order to generate the next output. In
-order to raise accuracy, our task 2 LSTM used a look-back
-value of five.<img src= "/intel-sur-site/images/pred-4.png"> In other words, the model uses the previous five
+order to raise accuracy, our task 2 LSTM used a look-back value of five.</p>
+				
+				<img src= "/intel-sur-site/images/pred-4.png"> 
+				
+				<p>In other words, the model uses the previous five
 data points to predict the next. The task 2 model architecture
 is similar to our task 1 model, with the four layers in the
 same order. However, we used a MAE loss function, ReLU
 activation function, and 25 epochs instead. After training,
 our model made predictions with a mean absolute error of
 0.74 minutes. With our testing dataset’s mean foreground
-duration of 1.73 minutes, on average our model predicted
-					foreground durations accurate within approximately 44 seconds.</p>
+duration of 1.73 minutes, on average our model predicted foreground durations accurate within approximately 44 seconds.</p>
+				
 <img src= "/intel-sur-site/images/pred-3.png">
 			
 
